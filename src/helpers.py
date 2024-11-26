@@ -8,3 +8,21 @@ def fetch_html(url):
 
     with urllib.request.urlopen(req) as response:
         return response.read().decode('utf-8')
+def extract_levels(data):
+    if data is None:
+        return []
+
+    result = []
+    current_level = []
+
+    for item in data:
+        if isinstance(item, list):
+            result.extend(extract_levels(item))
+        else:
+            current_level.append(item)
+
+    if current_level:
+        result.insert(0, current_level)
+
+    return result
+
