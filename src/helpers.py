@@ -1,4 +1,6 @@
 import urllib.request
+from src.ul_parser import ULParser
+
 def fetch_html(url):
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
@@ -8,6 +10,19 @@ def fetch_html(url):
 
     with urllib.request.urlopen(req) as response:
         return response.read().decode('utf-8')
+
+def find_ul_with_most_items(html):
+    parser = ULParser()
+    parser.feed(html)
+
+    if not parser.result:
+        return None
+
+    extraced = extract_levels(parser.result)
+    largest_ul = max(extraced, key=len)
+
+    return len(largest_ul)
+
 def extract_levels(data):
     if data is None:
         return []
