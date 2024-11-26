@@ -9,3 +9,6 @@ Example usage
 To run test navigate to test folder and run:
 
     python -m unittest
+
+
+Written and tested in Python 3.10.3
