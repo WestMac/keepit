@@ -6,7 +6,7 @@ Example usage
 
     python main.py https://google.com
 
-To run test navigate to test folder and run:
+To run test navigate to tests folder and run:
 
     python -m unittest
 
